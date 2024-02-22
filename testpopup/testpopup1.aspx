@@ -8,46 +8,65 @@
     <title>testpopup1</title>
 </head>
 <body>
-    <form id="form1" runat="server">
         <div>
             <h1 id="text1">titulo1</h1>
             <button id="btnOpen" class="btn btn-primary">OPEN</button>
+            <h2 id="clienteCodi">adsad</h2>
+            <h2 id="clienteRazon">asdasd</h2>
         </div>
-    </form>
+
 
     <script language="javascript">
 
-        function isGreenBrowser() {
-                var sUsrAg = navigator.userAgent;
-
-            if (sUsrAg.indexOf("MSIE") > -1) return true;
-            return false
-
-
-
+        var clienteCodi1;
+        var clienteRazon1;
+        function setReturnValues(clienteCodi, clienteRazon) {
+            clienteCodi1 = clienteCodi;
+            clienteRazon1 = clienteRazon; 
+            window.document.getElementById("clienteCodi").innerText = clienteCodi1;
+            window.document.getElementById("clienteRazon").innerText = clienteRazon1;           
         }
-        function openPopUpWithModal() {
-            var retVal = window.showModalDialog("/popup1.aspx");
-            alert("retVal: " + retVal)
-            return retVal;
+
+        function unloadHandler() {
+            //console.log("unloadHandler");
+            //console.log({ e });
+            //alert("clienteCodi" + clienteCodi1);
         }
-        function openNewWindow() {
-            window.open("/popup1.aspx");
-        }
+
         function openPopUp() {
-            var gb = isGreenBrowser();
-            if (gb == true) {
-                //alert("is gb");
-                //var res = openPopUpWithModal();
-                //alert(res);
-                var res = window.open("/popup1.aspx")
-            }
-            else {
-                alert("is not gb")
-                openNewWindow();
-            }
+            //event.preventDefault();
+            var retVal = window.open("/popup1.aspx", "", "width=600; height=600;");
+            retVal.onunload = unloadHandler;
+
         }
-        document.getElementById("btnOpen").onclick = openPopUp
+
+        window.document.getElementById("btnOpen").onclick = openPopUp;
+        //function isGreenBrowser() {
+        //        var sUsrAg = navigator.userAgent;
+
+        //    if (sUsrAg.indexOf("MSIE") > -1) return true;
+        //    return false
+
+
+
+        //}
+        //function openNewWindow() {
+        //    window.open("/popup1.aspx");
+        //}
+        //function openPopUp() {
+        //    var gb = isGreenBrowser();
+        //    if (gb == true) {
+        //        //alert("is gb");
+        //        //var res = openPopUpWithModal();
+        //        //alert(res);
+        //        var res = window.open("/popup1.aspx")
+        //    }
+        //    else {
+        //        alert("is not gb")
+        //        openNewWindow();
+        //    }
+        //}
+        //document.getElementById("btnOpen").onclick = openPopUp
         //function messageHandler (event) {
         //    console.log({event})
         //}

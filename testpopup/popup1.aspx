@@ -18,42 +18,50 @@
     </div>
     <script type="text/javascript" language="javascript">
 
-        function isGreenBrowser() {
-            var sUsrAg = navigator.userAgent;
+        function enviarDatos() {
+            alert("enviarDatos");
 
-            if (sUsrAg.indexOf("MSIE") > -1) return true;
-            return false
-        }
-        function sendData() {
-            alert("sendData")
-                let prevWindow = window.opener
-                let cliente = {
-                    clienteCodi: 123456,
-                    clienteRazon: 'clienteRazon',
-                    clienteDescuento: 21
-                }
-                prevWindow.postMessage(cliente, '*')
-            }
-        
-
-        function returnData() {
-            alert("returnData");
-            //alert("returnData")
-            //var cliente1 = {
-            //    clienteCodi: 123456,
-            //    clienteRazon: 'clienteRazon',
-            //    clienteDescuento: 21
-            //}
-            //window.returnValue = "cliente1";
+            window.opener.setReturnValues(1234, "newClient");
             window.close();
         }
+        window.document.getElementById("btnEnviarDatos").onclick = enviarDatos;
 
-        function pageLoadHandler() {
-            if (isGreenBrowser == true) window.getElementById("btnEnviarDatos").onclick = returnData;
-            else document.getElementById("btnEnviarDatos").addEventListener("click", sendData);
-        }
+        //function isGreenBrowser() {
+        //    var sUsrAg = navigator.userAgent;
 
-        document.onload = pageLoadHandler()
+        //    if (sUsrAg.indexOf("MSIE") > -1) return true;
+        //    return false
+        //}
+        //function sendData() {
+        //    alert("sendData")
+        //        let prevWindow = window.opener
+        //        let cliente = {
+        //            clienteCodi: 123456,
+        //            clienteRazon: 'clienteRazon',
+        //            clienteDescuento: 21
+        //        }
+        //        prevWindow.postMessage(cliente, '*')
+        //    }
+        
+
+        //function returnData() {
+        //    alert("returnData");
+        //    //alert("returnData")
+        //    //var cliente1 = {
+        //    //    clienteCodi: 123456,
+        //    //    clienteRazon: 'clienteRazon',
+        //    //    clienteDescuento: 21
+        //    //}
+        //    //window.returnValue = "cliente1";
+        //    window.close();
+        //}
+
+        //function pageLoadHandler() {
+        //    if (isGreenBrowser == true) window.getElementById("btnEnviarDatos").onclick = returnData;
+        //    else document.getElementById("btnEnviarDatos").addEventListener("click", sendData);
+        //}
+
+        //document.onload = pageLoadHandler()
 
 
         //document.getElementById('btnEscribirDatos').addEventListener("click", () => {
